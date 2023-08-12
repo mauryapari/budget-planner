@@ -10,10 +10,11 @@ import { account } from "@/types/accountsType";
 
 type AccountProps = {
   accounts: account[]
-} & IntrinsicAttributes;
+}
 
 const AccountSelector = (props: AccountProps) => {
   const { accounts } = props;
+  console.log(accounts);
   return (
     <Select>
       <SelectTrigger className="w-[180px]">

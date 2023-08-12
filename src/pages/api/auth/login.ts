@@ -29,26 +29,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             // Generate JWT token
             const secret: Secret = process.env.JWT_SECRET_KEY!;
-            const token = jwt.sign({ userId: user._id }, secret, {
+            const token = jwt.sign({ userId: user._id.toString() }, secret, {
                 expiresIn: '1h', // Token expiration time
             });
 
             // Set the token as an HTTP-only cookie to secure it from JavaScript access
             res.setHeader(
                 'Set-Cookie',
-                [cookie.serialize('token', token, {
+                cookie.serialize('token', token, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV !== 'development', // Set to true in production
                     sameSite: 'strict',
                     maxAge: 3600, // 1 hour (in seconds)
                     path: '/',
-                }),cookie.serialize('userID', userID!, {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV !== 'development', // Set to true in production
-                    sameSite: 'strict',
-                    maxAge: 3600, // 1 hour (in seconds)
-                    path: '/',
-                }),]
+                })
             );
 
             res.status(200).json({ message: 'Login successful' });

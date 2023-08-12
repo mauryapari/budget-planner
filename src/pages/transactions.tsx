@@ -43,12 +43,15 @@ const Transactions = () => {
   useEffect(() => {
     async function fetchAccounts() {
       const response = await fetch("/api/account");
-      const { result } = await response.json();
-      setUserAccounts(result);
+      const { data } = await response.json();
+      setUserAccounts(data);
     }
+    console.log(userAccounts)
 
     fetchAccounts();
   }, []);
+
+
   return (
     <div className="container">
       <p>Create a transaction</p>
