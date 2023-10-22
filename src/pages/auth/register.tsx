@@ -54,7 +54,7 @@ export default function Register() {
 
       if (response.ok) {
         // Login successful, redirect to dashboard or protected page
-        window.location.href = "/transactions";
+        window.location.href = "/login";
       } else {
         // Handle login error
         console.log("Login failed");

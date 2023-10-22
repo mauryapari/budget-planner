@@ -25,7 +25,8 @@ const Balances = () => {
         {userAccounts?.map((item, index) => (
             <Card key={index} className="w-[25%]">
                 <CardContent>
-                    <p>Card Content</p>
+                    <p>{item.account_name}</p>
+                    <p>{item.balance}</p>
                 </CardContent>
             </Card>
         ))}

@@ -9,14 +9,15 @@ import {
 import { account } from "@/types/accountsType";
 
 type AccountProps = {
-  accounts: account[]
+  accounts: account[],
+  changeAccount: (...event: any[]) => void
 }
 
 const AccountSelector = (props: AccountProps) => {
-  const { accounts } = props;
-  console.log(accounts);
+  const { accounts, changeAccount } = props;
+  
   return (
-    <Select>
+    <Select onValueChange={changeAccount} >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Account" />
       </SelectTrigger>
